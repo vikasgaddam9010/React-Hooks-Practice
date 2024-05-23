@@ -26,23 +26,27 @@ const BmiCalculator = () => {
   const storedHeight = JSON.parse(localStorage.getItem('height'))
   const storedWeight = JSON.parse(localStorage.getItem('weight'))
 
-  const [height, setHeight] = useState(storedHeight !== null ? storedHeight : 170)
-  const [weight, setWeight] = useState(storedWeight !== null ? storedWeight : 60)
+  const [height, setHeight] = useState(
+    storedHeight !== null ? storedHeight : 170,
+  )
+  const [weight, setWeight] = useState(
+    storedWeight !== null ? storedWeight : 60,
+  )
 
   useEffect(() => {
     document.title = `Your BMI: ${getBmi(height, weight)}`
-    console.log("Title Score")
-  },[height, weight])
+    console.log('Title Score')
+  }, [height, weight]) //when height and weight is changed then this useEffect will be called and this is callback syntax for useEffect method for for dependecies to execute
 
   useEffect(() => {
     localStorage.setItem('height', JSON.stringify(height))
-    console.log("height")
-  },[height])
+    console.log('height')
+  }, [height]) //when height changed then this useEffect will be called and this is callback syntax for useEffect method for for dependecies to execute
 
   useEffect(() => {
     localStorage.setItem('weight', JSON.stringify(weight))
-    console.log("weight")
-  }, [weight])
+    console.log('weight')
+  }, [weight]) //when weight is changed then this useEffect will be called and this is callback syntax for useEffect method for for dependecies to execute
 
   const onIncrementWeight = () => {
     setWeight(prevWeight => prevWeight + 1)
